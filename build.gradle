@@ -10,16 +10,30 @@ repositories {
     mavenCentral()
 }
 
+project.ext {
+    lombokVersion = '1.18.4'
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-dependencies:2.2.1.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-devtools'
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
 
     implementation 'com.google.guava:guava:28.0-jre'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
 
-    compileOnly 'org.projectlombok:lombok:1.18.10'
-    annotationProcessor 'org.projectlombok:lombok:1.18.10'
+    runtime 'org.postgresql:postgresql:42.2.8.jre7'
+
+    //lombok
+    implementation "org.projectlombok:lombok:${lombokVersion}"
+    testCompile "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    implementation('com.xebia:jackson-lombok:1.1')
 }
 
 test {
