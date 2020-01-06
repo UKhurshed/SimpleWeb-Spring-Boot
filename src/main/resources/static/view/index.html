@@ -1,30 +1,38 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <title>Simple Web</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-    <link type="text/css" rel="stylesheet" href="/css/index.css">
-</head>
+<head th:replace="view/head :: head"></head>
 <body>
-<table class="table">
+<div class="container">
+    <div th:replace="view/header :: header"></div>
+<table class="table table-bordered table-hover horizontal-align">
     <thead>
     <tr>
-        <td>
-            Name
-        </td>
-        <td>Description</td>
-        <td>Author</td>
+        <th style="width: 5%">#</th>
+        <th style="width: 25%">Name</th>
+        <th style="width: 35%">Description</th>
+        <th style="width: 20%">Author</th>
+        <th style="width: 5%">Done</th>
+        <th style="width: 5%">Edit</th>
+        <th style="width: 5%">Delete</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="book : ${books}">
+    <tr th:each="book : ${book}">
+        <td th:text="${book.id}" style="text-align: center"></td>
         <td th:text="${book.name}"></td>
         <td th:text="${book.description}"></td>
         <td th:text="${book.author}"></td>
+        <td style="text-align: center">
+            <i th:if="${book.done} == true" class="fa fa-plus-square-o" style="font-size:20px;color:#337ab7"></i>
+            <i th:if="${book.done} == false" class="fa fa-minus-square-o" style="font-size:20px;color:#337ab7"></i>
+        </td>
+        <td style="text-align: center"><a th:href="@{'/edit/{id}'(id=${book.id})}"><i class="fa fa-edit" style="font-size: 20px"></i></a></td>
+        <td style="text-align: center"><a th:href="@{'/delete/{id}'(id=${book.id})}"><i class="fa fa-trash" style="font-size: 20px"></i></a></td>
     </tr>
     </tbody>
 </table>
+    <div th:replace="view/footer :: footer"></div>
+</div>
 </body>
-
 </html>

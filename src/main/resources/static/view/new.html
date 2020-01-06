@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="view/head :: head"></head>
+<body>
+<div class="container">
+    <div th:replace="view/header :: header"></div>
+    <div class="container">
+        <form class="form-horizontal" th:action="@{/save}" name="input_form" id="input_form"
+              method="post" role="form">
+            <div class="form-group">
+                <input type="text" class="form-control" id="name" th:name="name" placeholder="Enter your name." maxlength="250"/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="description" th:name="description" placeholder="Enter description." maxlength="250"/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="author" th:name="author" placeholder="Enter author`s name" maxlength="250"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
